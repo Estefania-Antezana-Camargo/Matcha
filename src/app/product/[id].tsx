@@ -1,4 +1,5 @@
 
+import * as Haptics from 'expo-haptics';
 import { router, useLocalSearchParams } from 'expo-router';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors } from '../../constants/colors';
@@ -24,12 +25,10 @@ export default function ProductDetail() {
 
         <Pressable
           style={styles.button}
-          onPress={() =>
-            router.push({
-              pathname: '/order',
-              params: { id: product.id },
-            })
-          }
+          onPress={() => {
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+            router.push({ pathname: '/order', params: { id: product.id } });
+          }}
         >
           <Text style={styles.buttonText}>Pedir</Text>
         </Pressable>
